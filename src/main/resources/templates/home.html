@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Welcome</h2>
+
+    <div th:if="${loggedIn}">
+        <p>You are now logged in with X! 🎉</p>
+        <div class="user-profile">
+            <img th:src="${userProfile.profilePictureUrl}" alt="Profile Picture" class="profile-picture"/>
+            <h3 th:text="${userProfile.fullName}">Full Name</h3>
+            <p th:text="${userProfile.bio}">Bio</p>
+        </div>
+        <a href="/api/auth/logout">Logout</a>
+    </div>
+
+    <div th:unless="${loggedIn}">
+        <a href="/api/auth/login">Login with
+            <img alt="X logo" height="16" style="color: white" th:src="@{/img/x.svg}" width="16">
+        </a>
+    </div>
+</div>
+</body>
+</html>
